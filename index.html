@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team Zuck — Cyber & Social Media Experts</title>
+<style>
+  :root{
+    --bg: #0B1220;
+    --bg-panel: #101A2E;
+    --bg-panel-2: #0E1626;
+    --line: #223049;
+    --text: #E7ECF3;
+    --muted: #8CA0B8;
+    --cyan: #4CC9F0;
+    --violet: #8B7CFF;
+    --radius: 4px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    line-height:1.6;
+  }
+  a{color:var(--cyan); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* ===== Banner ===== */
+  .banner{
+    position:relative;
+    padding:76px 24px 64px;
+    text-align:center;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(76,201,240,0.18), transparent 55%),
+      radial-gradient(ellipse at 85% 0%, rgba(139,124,255,0.16), transparent 50%),
+      linear-gradient(180deg, #0E1830 0%, #0B1220 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .banner::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(140,160,184,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(140,160,184,0.06) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+    pointer-events:none;
+  }
+  .banner-inner{position:relative; z-index:1;}
+  .badge{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; color:var(--cyan);
+    border:1px solid rgba(76,201,240,0.35);
+    padding:5px 14px; border-radius:999px;
+    background:rgba(76,201,240,0.06);
+    margin-bottom:22px;
+  }
+  .badge svg{width:14px; height:14px;}
+  .banner h1{
+    font-size:clamp(40px, 7vw, 68px);
+    margin:0 0 14px;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    background:linear-gradient(100deg, #F2F6FB 30%, var(--cyan) 65%, var(--violet) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .banner p.tagline{
+    font-size:18px; color:var(--muted);
+    max-width:560px; margin:0 auto;
+  }
+
+  /* ===== Layout ===== */
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px;}
+  section{padding:64px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  h2{
+    font-size:26px; margin:0 0 28px;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  p{color:var(--text); max-width:68ch;}
+
+  /* ===== Intro ===== */
+  .intro-grid{display:grid; grid-template-columns: 1fr 1fr; gap:32px;}
+  .intro-grid .stat{
+    border-left:2px solid var(--cyan);
+    padding-left:16px;
+  }
+  .intro-grid .stat b{display:block; font-size:15px; color:var(--text);}
+  .intro-grid .stat span{font-size:14px; color:var(--muted);}
+
+  /* ===== How social media works ===== */
+  .flow{
+    display:flex; flex-direction:column; gap:0;
+    border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
+  }
+  .flow-row{
+    display:grid; grid-template-columns: 120px 1fr;
+    padding:20px 22px;
+    background:var(--bg-panel);
+  }
+  .flow-row:nth-child(even){background:var(--bg-panel-2);}
+  .flow-row + .flow-row{border-top:1px solid var(--line);}
+  .flow-row .k{color:var(--cyan); font-weight:600; font-size:14px;}
+  .flow-row .v{color:var(--muted); font-size:14.5px;}
+  .flow-row .v b{color:var(--text); font-weight:600;}
+
+  /* ===== Cyber tips ===== */
+  .tips{display:grid; grid-template-columns: 1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .tip{background:var(--bg-panel); padding:22px 24px;}
+  .tip h3{margin:0 0 8px; font-size:15.5px; color:var(--text);}
+  .tip p{margin:0; font-size:14px; color:var(--muted);}
+
+  /* ===== Quotes ===== */
+  .quote{
+    border-left:2px solid var(--violet);
+    padding:4px 0 4px 20px;
+    margin-bottom:26px;
+  }
+  .quote p{font-size:18px; color:var(--text); margin:0 0 6px; font-style:italic;}
+  .quote span{font-size:13px; color:var(--muted);}
+
+  /* ===== Team / contacts ===== */
+  .team-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+  .card .role{font-size:12.5px; color:var(--cyan); margin-bottom:8px;}
+  .card .name{font-size:16px; font-weight:600; margin-bottom:10px;}
+  .card a{font-size:14.5px;}
+  .socials{display:flex; flex-wrap:wrap; gap:14px; margin-top:10px;}
+  .socials a{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 22px; border:1px solid transparent;
+    border-radius:var(--radius); font-size:15.5px; font-weight:700;
+    color:#08111F;
+    transition:transform 0.12s ease, filter 0.12s ease;
+  }
+  .socials a:hover{text-decoration:none; filter:brightness(1.08); transform:translateY(-1px);}
+  .socials a.tg{background:linear-gradient(135deg,#3FC1E8,#2FA8DC);}
+  .socials a.yt{background:linear-gradient(135deg,#FF5C5C,#E53E3E); color:#FFFFFF;}
+  .socials a svg{width:19px; height:19px; flex-shrink:0;}
+
+  /* ===== Message/contact CTA ===== */
+  .cta{
+    background:linear-gradient(135deg, rgba(76,201,240,0.10), rgba(139,124,255,0.10));
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:32px;
+    text-align:center;
+  }
+  .cta h2{margin-bottom:10px;}
+  .cta p{margin:0 auto 20px; color:var(--muted);}
+  .cta-btn{
+    display:inline-block; padding:12px 26px;
+    background:var(--cyan); color:#08111F;
+    font-weight:700; border-radius:var(--radius);
+  }
+  .cta-btn:hover{text-decoration:none; opacity:0.9;}
+
+  footer{padding:32px 24px; text-align:center; color:var(--muted); font-size:13px;}
+
+  @media(max-width:640px){
+    .intro-grid, .tips, .team-grid{grid-template-columns:1fr;}
+    .flow-row{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="banner">
+    <div class="banner-inner">
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/></svg>
+        CYBER SECURITY & SOCIAL MEDIA
+      </div>
+      <h1>TEAM ZUCK</h1>
+      <p class="tagline">A small team that helps people understand, grow, and stay safe across social platforms.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section>
+      <h2>The team</h2>
+      <div class="team-grid">
+        <div class="card">
+          <div class="role">OWNER</div>
+          <div class="name">Team Zuck — Founder</div>
+          <a href="https://t.me/iwasbroken" target="_blank" rel="noopener">t.me/iwasbroken</a>
+        </div>
+        <div class="card">
+          <div class="role">CO-OWNER</div>
+          <div class="name">Team Zuck — Co-Founder</div>
+          <a href="https://t.me/0mdfn12" target="_blank" rel="noopener">t.me/0mdfn12</a>
+        </div>
+      </div>
+
+      <div class="socials" style="margin-top:20px;">
+        <a class="tg" href="https://t.me/team_zuck" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 3.6 2.9 11c-1 .4-1 1.6.2 1.9l4.7 1.5 1.8 5.6c.2.7 1.1.9 1.6.4l2.6-2.5 4.8 3.5c.7.5 1.7.1 1.9-.7l3.2-15c.2-1-.8-1.9-1.7-1.5ZM8.6 14.1l9-6.3c.2-.1.4.1.2.3l-7.3 7-0.3 3.1-1.2-3.5Z"/></svg>
+          Telegram — t.me/team_zuck
+        </a>
+        <a class="yt" href="https://youtube.com/@teamzuck1?si=MaEAuHob_QsJbB3v" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.6a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.5A3 3 0 0 0 .5 6.6 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.4 3 3 0 0 0 2.1 2.1C4.5 20 12 20 12 20s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.4ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg>
+          YouTube — @teamzuck1
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Who we are</h2>
+      <p>Team Zuck is a two-person-led group focused on social media strategy and everyday cyber security awareness. We help people grow accounts safely, recover from common mistakes, understand platform rules, and avoid the scams and account-security pitfalls that trip up most users.</p>
+      <div class="intro-grid" style="margin-top:28px;">
+        <div class="stat">
+          <b>Social Media</b>
+          <span>Growth, content strategy, platform know-how</span>
+        </div>
+        <div class="stat">
+          <b>Cyber Security</b>
+          <span>Account safety, scam awareness, good digital habits</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>How social media actually works</h2>
+      <div class="flow">
+        <div class="flow-row">
+          <div class="k">Reach</div>
+          <div class="v">Platforms use a <b>ranking algorithm</b> that decides who sees your content, based on signals like watch time, replies, and shares — not just follower count.</div>
+        </div>
+        <div class="flow-row">
+          <div class="k">Signals</div>
+          <div class="v">Early engagement (the first minutes/hours after posting) tells the algorithm whether to push a post further. This is why timing and a strong hook matter.</div>
+        </div>
+        <div class="flow-row">
+          <div class="k">Consistency</div>
+          <div class="v">Accounts that post on a <b>regular rhythm</b> and stay inside one niche tend to be shown to more of the right audience over time.</div>
+        </div>
+        <div class="flow-row">
+          <div class="k">Trust</div>
+          <div class="v">Verified info, two-factor login, and clean posting history all feed into how much a platform trusts an account — which affects reach and account safety.</div>
+        </div>
+        <div class="flow-row">
+          <div class="k">Community</div>
+          <div class="v">Replies, DMs, and shares turn casual viewers into a <b>real audience</b> — growth is a relationship, not just a number.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Cyber security basics we always share</h2>
+      <div class="tips">
+        <div class="tip">
+          <h3>Turn on 2FA</h3>
+          <p>Two-factor authentication is the single biggest thing that stops account takeovers.</p>
+        </div>
+        <div class="tip">
+          <h3>Watch for phishing</h3>
+          <p>Fake login pages and "urgent account issue" messages are the most common way accounts get stolen.</p>
+        </div>
+        <div class="tip">
+          <h3>Unique passwords</h3>
+          <p>Never reuse the same password across platforms — use a password manager if you can.</p>
+        </div>
+        <div class="tip">
+          <h3>Check app permissions</h3>
+          <p>Regularly review which third-party apps have access to your social accounts and revoke what you don't use.</p>
+        </div>
+        <div class="tip">
+          <h3>Verify before you click</h3>
+          <p>Hover or long-press links before opening — shortened links can hide malicious destinations.</p>
+        </div>
+        <div class="tip">
+          <h3>Back up recovery info</h3>
+          <p>Keep your recovery email/phone current so you can always get back into a locked account.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Words we work by</h2>
+      <div class="quote">
+        <p>"The best security isn't the strongest lock — it's the habit of checking before you click."</p>
+        <span>— Team Zuck</span>
+      </div>
+      <div class="quote">
+        <p>"Growth on social media rewards consistency more than luck."</p>
+        <span>— Team Zuck</span>
+      </div>
+      <div class="quote">
+        <p>"Your account is only as safe as your weakest password."</p>
+        <span>— Team Zuck</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>The team</h2>
+      <div class="team-grid">
+        <div class="card">
+          <div class="role">OWNER</div>
+          <div class="name">Team Zuck — Founder</div>
+          <a href="https://t.me/iwasbroken" target="_blank" rel="noopener">t.me/iwasbroken</a>
+        </div>
+        <div class="card">
+          <div class="role">CO-OWNER</div>
+          <div class="name">Team Zuck — Co-Founder</div>
+          <a href="https://t.me/0mdfn12" target="_blank" rel="noopener">t.me/0mdfn12</a>
+        </div>
+      </div>
+
+      <div class="socials" style="margin-top:20px;">
+        <a class="tg" href="https://t.me/team_zuck" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 3.6 2.9 11c-1 .4-1 1.6.2 1.9l4.7 1.5 1.8 5.6c.2.7 1.1.9 1.6.4l2.6-2.5 4.8 3.5c.7.5 1.7.1 1.9-.7l3.2-15c.2-1-.8-1.9-1.7-1.5ZM8.6 14.1l9-6.3c.2-.1.4.1.2.3l-7.3 7-0.3 3.1-1.2-3.5Z"/></svg>
+          Telegram — t.me/team_zuck
+        </a>
+        <a class="yt" href="https://youtube.com/@teamzuck1?si=MaEAuHob_QsJbB3v" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.6a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.5A3 3 0 0 0 .5 6.6 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.4 3 3 0 0 0 2.1 2.1C4.5 20 12 20 12 20s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.4ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg>
+          YouTube — @teamzuck1
+        </a>
+      </div>
+    </section>
+
+    <section style="border-bottom:none;">
+      <div class="cta">
+        <h2>Need help with a social media problem?</h2>
+        <p>Message Team Zuck on Telegram — we help with account growth, content strategy, security check-ups, and general social media troubleshooting.</p>
+        <a class="cta-btn" href="https://t.me/team_zuck" target="_blank" rel="noopener">Message us on Telegram →</a>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    Team Zuck — Cyber Security & Social Media
+  </footer>
+
+</body>
+</html>
